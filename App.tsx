@@ -1,13 +1,18 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import LandingPage from './components/LandingPage.tsx';
 import QuestionPage from './components/QuestionPage.tsx';
 import SurprisePage from './components/SurprisePage.tsx';
 import { AppStep } from './types.ts';
-import { Analytics } from '@vercel/analytics/react';
+import { inject } from '@vercel/analytics';
 
 const App: React.FC = () => {
   const [step, setStep] = useState<AppStep>('landing');
+
+  useEffect(() => {
+    // Initialize Vercel Analytics safely
+    inject();
+  }, []);
 
   const handleEnter = () => {
     setStep('question');
@@ -22,7 +27,6 @@ const App: React.FC = () => {
       {step === 'landing' && <LandingPage onEnter={handleEnter} />}
       {step === 'question' && <QuestionPage onYes={handleYes} />}
       {step === 'surprise' && <SurprisePage />}
-      <Analytics />
     </div>
   );
 };
