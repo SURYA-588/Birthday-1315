@@ -6,6 +6,10 @@ import { GALLERY_IMAGES, TRANSFORMATION, HEARTFELT_LETTER, ROMANTIC_VIDEO_URL, R
 const MemoryCard: React.FC<{ item: { url: string; caption: string }; index: number }> = ({ item, index }) => {
   const [isRevealed, setIsRevealed] = useState(false);
   const [isZoomed, setIsZoomed] = useState(false);
+  
+  const isVideo = item.url.toLowerCase().endsWith('.mp4') || 
+                  item.url.toLowerCase().endsWith('.mov') || 
+                  item.url.toLowerCase().endsWith('.webm');
 
   return (
     <>
@@ -23,7 +27,25 @@ const MemoryCard: React.FC<{ item: { url: string; caption: string }; index: numb
         </div>
 
         <div className={`absolute inset-0 z-10 transition-all duration-1000 transform ${isRevealed ? 'opacity-100 scale-100' : 'opacity-0 scale-110 pointer-events-none'}`}>
-          <img src={item.url} alt={item.caption} className="w-full h-full object-cover" />
+          {isVideo ? (
+            <video 
+              src={item.url} 
+              className="w-full h-full object-cover" 
+              autoPlay 
+              muted 
+              loop 
+              playsInline
+            />
+          ) : (
+            <img 
+              src={item.url} 
+              alt={item.caption} 
+              className="w-full h-full object-cover" 
+              onError={(e) => {
+                (e.target as HTMLImageElement).src = 'https://placehold.co/600x800/fff1f2/be123c?text=Missing+Memory';
+              }}
+            />
+          )}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
           <button onClick={(e) => { e.stopPropagation(); setIsZoomed(true); }} className="absolute bottom-6 right-6 w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white border border-white/30 hover:bg-white/40 transition-colors">🔍</button>
         </div>
@@ -33,7 +55,20 @@ const MemoryCard: React.FC<{ item: { url: string; caption: string }; index: numb
         <div className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-12 transition-all animate-in fade-in duration-500" onClick={() => setIsZoomed(false)}>
           <button className="absolute top-8 right-8 text-white/50 hover:text-white text-4xl font-light transition-colors">&times;</button>
           <div className="max-w-5xl w-full h-full flex flex-col items-center justify-center gap-8">
-            <img src={item.url} className="max-h-[80vh] w-auto object-contain rounded-lg shadow-2xl animate-in zoom-in-95 duration-500" alt={item.caption} />
+            {isVideo ? (
+              <video 
+                src={item.url} 
+                controls 
+                autoPlay 
+                className="max-h-[80vh] w-auto rounded-lg shadow-2xl animate-in zoom-in-95 duration-500"
+              />
+            ) : (
+              <img 
+                src={item.url} 
+                className="max-h-[80vh] w-auto object-contain rounded-lg shadow-2xl animate-in zoom-in-95 duration-500" 
+                alt={item.caption} 
+              />
+            )}
             <div className="text-center">
               <p className="text-3xl md:text-5xl font-romantic text-gold mb-2">{item.caption}</p>
             </div>
@@ -58,7 +93,7 @@ const SurprisePage: React.FC = () => {
   const toggleMusic = () => {
     if (audioRef.current) {
       if (isPlaying) audioRef.current.pause();
-      else audioRef.current.play();
+      else audioRef.current.play().catch(err => console.log("Audio play blocked: ", err));
       setIsPlaying(!isPlaying);
     }
   };
@@ -79,7 +114,7 @@ const SurprisePage: React.FC = () => {
 
       {/* Header */}
       <section className="pt-32 pb-16 text-center px-4 relative z-10">
-        <h3 className="text-rose-400 uppercase tracking-[0.4em] text-sm mb-4 font-semibold animate-letter-drift">A Celebration</h3>
+        <h3 className="text-rose-400 uppercase tracking-[0.4em] text-sm mb-4 font-semibold">A Celebration</h3>
         <h1 className="text-6xl md:text-9xl font-romantic text-rose-600 mb-6 animate-luxury-glow">Happy Birthday to My Child🥹</h1>
         <p className="text-2xl md:text-3xl font-cursive text-rose-500">From the depths of my heart, By Your Fraud</p>
       </section>
@@ -92,6 +127,9 @@ const SurprisePage: React.FC = () => {
                src={ABOUT_HER.image} 
                alt="Praveena" 
                className="w-full h-full object-cover transition-transform duration-[3000ms] hover:scale-110"
+               onError={(e) => {
+                 (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1000';
+               }}
              />
           </div>
           <div className="w-full lg:w-1/2 p-12 lg:p-20 text-center lg:text-left flex flex-col justify-center">
@@ -120,11 +158,11 @@ const SurprisePage: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="relative group overflow-hidden rounded-[2rem] shadow-2xl aspect-[4/5] bg-white p-4">
             <div className="absolute top-8 left-8 z-20 glass-card px-4 py-2 rounded-full text-xs tracking-widest text-rose-800 uppercase font-bold">Then</div>
-            <img src={TRANSFORMATION.childhood} alt="Childhood" className="w-full h-full object-cover rounded-[1.5rem]" />
+            <img src={TRANSFORMATION.childhood} alt="Childhood" className="w-full h-full object-cover rounded-[1.5rem]" onError={(e) => (e.target as HTMLImageElement).src = 'https://placehold.co/400x500?text=Childhood+Photo'} />
           </div>
           <div className="relative group overflow-hidden rounded-[2rem] shadow-2xl aspect-[4/5] bg-white p-4">
             <div className="absolute top-8 left-8 z-20 glass-card px-4 py-2 rounded-full text-xs tracking-widest text-rose-800 uppercase font-bold">Now</div>
-            <img src={TRANSFORMATION.current} alt="Current" className="w-full h-full object-cover rounded-[1.5rem]" />
+            <img src={TRANSFORMATION.current} alt="Current" className="w-full h-full object-cover rounded-[1.5rem]" onError={(e) => (e.target as HTMLImageElement).src = 'https://placehold.co/400x500?text=Current+Photo'} />
           </div>
         </div>
       </section>
@@ -205,7 +243,7 @@ const SurprisePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Connect with Surya Section - NOW LAST */}
+      {/* Connect with Surya Section */}
       <section className="max-w-5xl mx-auto px-6 mt-48 relative z-10">
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-6xl font-luxury text-rose-950 mb-4 italic">Reach Out to My Heart</h2>
