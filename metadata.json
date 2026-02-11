@@ -1,0 +1,7 @@
+{
+  "name": "Romantic Birthday",
+  "description": "A beautiful, interactive romantic birthday surprise website featuring a playful love question, animated celebrations, a photo gallery, and heartfelt messages.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
