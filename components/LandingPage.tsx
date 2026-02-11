@@ -8,7 +8,7 @@ interface LandingPageProps {
 const LandingPage: React.FC<LandingPageProps> = ({ onEnter }) => {
   const [textIndex, setTextIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
-  const messages = ["Welcome, Praveena.", "A Whishes made for you..."];
+  const messages = ["Welcome, Praveena.", "A Wishes made for you..."];
   const [isDeleting, setIsDeleting] = useState(false);
   const [showButton, setShowButton] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
