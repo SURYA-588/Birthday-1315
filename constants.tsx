@@ -18,7 +18,7 @@ export const GALLERY_IMAGES = [
 ];
 
 export const ABOUT_HER = {
-  image: "/images/SmartSelect_20250920_213813_Gallery.jpg.jpeg",
+  image: "/images/SmartSelect_20250920_213813_Gallery.jpg",
   title: "The Essence of Praveena",
   description: "More than just a beautiful face, you possess a soul that radiates kindness, intelligence, and a grace that is truly rare. Your laughter is my favorite melody, and your strength is my greatest inspiration. You have this magical way of making the ordinary feel extraordinary just by being there."
 };
