@@ -6,7 +6,7 @@ export const GALLERY_IMAGES = [
   { url: "./media/Screenshot_20251113_223117_Snapchat(1).jpeg", caption: "A Perfect ever" },
   { url: "./media/IMG_20240218_185219_243.jpeg", caption: "Smile to continue" },
   { url: "./media/IMG_20231229_203643_599.jpeg", caption: "I have never seen" },
-  { url: "./media/IMG_9744.HEIC", caption: "Cutest ever" },
+  { url: "./media/Screenshot_20260212_202033_Gallery.jpeg", caption: "Cutest ever" },
   { url: "./media/IMG_3236.jpeg", caption: "Endless Conversations" },
   { url: "./media/IMG-20250928-WA0002.jpeg", caption: "Endless Happy Picture" },
   { url: "./media/IMG_20260201_231527_975.jpeg", caption: "childish" },
