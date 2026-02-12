@@ -1,31 +1,31 @@
 
 export const GALLERY_IMAGES = [
-  { url: "./IMG_20240302_214111_414.jpeg", caption: "Our First Picture" },
-  { url: "./IMG_20240302_215525_664.jpeg", caption: "A secret close" },
-  { url: "./IMG_20240302_215523_707.jpeg", caption: "A secret moment" },
-  { url: "./Screenshot_20251113_223117_Snapchat(1).jpeg", caption: "A Perfect ever" },
-  { url: "./IMG_20240218_185219_243.jpeg", caption: "Smile to continue" },
-  { url: "./IMG_20231229_203643_599.jpeg", caption: "I have never seen" },
-  { url: "./IMG_9744.HEIC", caption: "Cutest ever" },
-  { url: "./IMG_3236.JPG", caption: "Endless Conversations" },
-  { url: "./IMG-20250928-WA0002.jpeg", caption: "Endless Happy Picture" },
-  { url: "./IMG_20260201_231527_975.jpeg", caption: "childish" },
-  { url: "./1766711647659.jpeg", caption: "AI illusion" },
-  { url: "./1758244879567.jpeg", caption: "As we never seen" },
-  { url: "./IMG_20241114_212439_247.jpeg", caption: "This loved one" },
-  { url: "./VID_20250926_105240_001.mp4", caption: "Always in my heart" },
-  { url: "./VID-20260209-WA0000.mp4", caption: "Naughty Ever with cute" },
+  { url: "./media/IMG_20240302_214111_414.jpeg", caption: "Our First Picture" },
+  { url: "./media/IMG_20240302_215525_664.jpeg", caption: "A secret close" },
+  { url: "./media/IMG_20240302_215523_707.jpeg", caption: "A secret moment" },
+  { url: "./media/Screenshot_20251113_223117_Snapchat(1).jpeg", caption: "A Perfect ever" },
+  { url: "./media/IMG_20240218_185219_243.jpeg", caption: "Smile to continue" },
+  { url: "./media/IMG_20231229_203643_599.jpeg", caption: "I have never seen" },
+  { url: "./media/IMG_9744.HEIC", caption: "Cutest ever" },
+  { url: "./media/IMG_3236.jpeg", caption: "Endless Conversations" },
+  { url: "./media/IMG-20250928-WA0002.jpeg", caption: "Endless Happy Picture" },
+  { url: "./media/IMG_20260201_231527_975.jpeg", caption: "childish" },
+  { url: "./media/1766711647659.jpeg", caption: "AI illusion" },
+  { url: "./media/1758244879567.jpeg", caption: "As we never seen" },
+  { url: "./media/IMG_20241114_212439_247.jpeg", caption: "This loved one" },
+  { url: "./media/VID_20250926_105240_001.mp4", caption: "Always in my heart" },
+  { url: "./media/VID-20260209-WA0000.mp4", caption: "Naughty Ever with cute" },
 ];
 
 export const ABOUT_HER = {
-  image: "./SmartSelect_20250920_213813_Gallery.jpeg",
+  image: "./media/SmartSelect_20250920_213813_Gallery.jpeg",
   title: "The Essence of Praveena",
   description: "More than just a beautiful face, you possess a soul that radiates kindness, intelligence, and a grace that is truly rare. Your laughter is my favorite melody, and your strength is my greatest inspiration. You have this magical way of making the ordinary feel extraordinary just by being there."
 };
 
 export const TRANSFORMATION = {
-  childhood: "./IMG_20240218_185311_774.jpeg",
-  current: "./IMG-20250928-WA0002(1).jpeg",
+  childhood: "./media/IMG_20240218_185311_774.jpeg",
+  current: "./media/IMG-20250928-WA0002(1).jpeg",
   text: "I always love not only your face, but your heart."
 };
 
@@ -47,6 +47,6 @@ export const CONTACT_INFO = {
   email: "suryasrivan@example.com"
 };
 
-export const ROMANTIC_VIDEO_URL = "./IMG_5364.MOV";
-export const ROMANTIC_SONG_URL = "./Aval.mp3";
+export const ROMANTIC_VIDEO_URL = "./media/IMG_5364.MOV";
+export const ROMANTIC_SONG_URL = "./media/Aval.mp3";
 export const FINAL_MESSAGE = "You are the most amazing person in my life. Every day with you is a gift. I love you more than words can express, Praveena. ❤️ Surya";

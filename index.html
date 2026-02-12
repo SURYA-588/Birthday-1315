@@ -1,11 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>A Royal Surprise for Praveena 💖</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>A Royal Surprise for Praveena</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
       :root {
@@ -13,13 +14,22 @@
         --deep-rose: #be123c;
         --rose-quartz: #fce7f3;
       }
+
+      * {
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+      }
+
       body {
         font-family: 'Quicksand', sans-serif;
         margin: 0;
         padding: 0;
         overflow-x: hidden;
         background-color: #fffafb;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
+
       .font-romantic {
         font-family: 'Great Vibes', cursive;
       }
@@ -29,7 +39,7 @@
       .font-luxury {
         font-family: 'Playfair Display', serif;
       }
-      
+
       /* Glassmorphism */
       .glass-card {
         background: rgba(255, 255, 255, 0.7);
@@ -38,14 +48,30 @@
         border: 1px solid rgba(255, 255, 255, 0.3);
       }
 
-      /* Luxury Animations */
+      /* Floating particle animation */
       @keyframes float {
-        0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
-        10% { opacity: 0.6; }
-        90% { opacity: 0.6; }
-        100% { transform: translateY(-110vh) translateX(calc(var(--sway) * 1px)) rotate(calc(var(--rotation) * 1deg)); opacity: 0; }
+        0% {
+          transform: translateY(0) translateX(0) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.6;
+        }
+        90% {
+          opacity: 0.6;
+        }
+        100% {
+          transform: translateY(-110vh) translateX(calc(var(--sway, 0) * 1px)) rotate(calc(var(--rotation, 0) * 1deg));
+          opacity: 0;
+        }
       }
-      
+
+      .particle {
+        animation: float var(--duration, 6s) var(--delay, 0s) ease-in-out infinite;
+        will-change: transform, opacity;
+      }
+
+      /* Luxury Glow */
       @keyframes luxuryGlow {
         0%, 100% { filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3)); }
         50% { filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.6)); }
@@ -55,10 +81,12 @@
         animation: luxuryGlow 4s ease-in-out infinite;
       }
 
+      /* Gold gradient text */
       .gold-gradient {
         background: linear-gradient(45deg, #b8860b, #d4af37, #f1d592, #d4af37, #b8860b);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        background-clip: text;
         background-size: 200% auto;
         animation: shine 4s linear infinite;
       }
@@ -67,6 +95,7 @@
         to { background-position: 200% center; }
       }
 
+      /* Mesh background */
       @keyframes mesh {
         0% { background-position: 0% 50%; }
         50% { background-position: 100% 50%; }
@@ -79,6 +108,7 @@
         animation: mesh 15s ease infinite;
       }
 
+      /* Gold shimmer button */
       .gold-shimmer-btn {
         position: relative;
         overflow: hidden;
@@ -90,18 +120,53 @@
         left: -50%;
         width: 200%;
         height: 200%;
-        background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+        background: linear-gradient(45deg, transparent, rgba(255,255,255,0.15), transparent);
         transform: rotate(45deg);
         animation: shimmer-effect 3s infinite;
       }
+
       @keyframes shimmer-effect {
         0% { transform: translate(-100%, -100%) rotate(45deg); }
         100% { transform: translate(100%, 100%) rotate(45deg); }
       }
 
+      /* Fade In animation */
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px) scale(0.95); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+      }
+
+      .animate-fade-in {
+        animation: fadeIn 0.8s ease-out forwards;
+      }
+
+      .animate-fade-in-slow {
+        animation: fadeIn 1.2s ease-out forwards;
+      }
+
+      /* Zoom in animation */
+      @keyframes zoomIn {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+      }
+
+      .animate-zoom-in {
+        animation: zoomIn 0.6s ease-out forwards;
+      }
+
+      /* Slide up animation */
+      @keyframes slideUp {
+        from { opacity: 0; transform: translateY(40px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .animate-slide-up {
+        animation: slideUp 0.8s ease-out forwards;
+      }
+
       /* Custom Scrollbar */
       ::-webkit-scrollbar {
-        width: 8px;
+        width: 6px;
       }
       ::-webkit-scrollbar-track {
         background: #fff1f2;
@@ -110,23 +175,29 @@
         background: #f43f5e;
         border-radius: 10px;
       }
+
+      /* Mobile-specific styles */
+      @media (max-width: 640px) {
+        .glass-card {
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+        }
+
+        ::-webkit-scrollbar {
+          width: 3px;
+        }
+      }
+
+      /* Touch device optimizations */
+      @media (hover: none) and (pointer: coarse) {
+        .gold-shimmer-btn:active {
+          transform: scale(0.97);
+        }
+      }
     </style>
-    <script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@19.0.0?bundle",
-    "react-dom": "https://esm.sh/react-dom@19.0.0?bundle",
-    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client?bundle",
-    "@vercel/analytics": "https://esm.sh/@vercel/analytics@1.5.0",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-    "react/": "https://esm.sh/react@^19.2.4/"
-  }
-}
-</script>
   </head>
   <body>
     <div id="root"></div>
-    <!-- Explicit module entry point -->
     <script type="module" src="./index.tsx"></script>
   </body>
 </html>
